@@ -4,380 +4,297 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Settings - EchoWatch</title>
-  <!-- Tailwind CSS CDN -->
+  <title>Settings | EchoWatch</title>
+  <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts -->
+  <link rel="stylesheet" href="./styles/settings.css">
+  <script src="./scripts/settings.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-
-    .nav-link.active {
-      background-color: #374151;
-      /* bg-gray-700 */
-      color: #22d3ee;
-      /* text-cyan-400 */
-    }
-
-    /* Styles for the modal and toast */
-    .modal-overlay {
-      transition: opacity 0.2s ease-in-out;
-    }
-
-    .toast-notification {
-      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 </head>
 
-<body class="bg-gray-900 text-gray-100">
+<body class="gradient-bg text-gray-100 min-h-screen">
+  <!-- Subtle particles background -->
+  <div class="particles" id="particles"></div>
 
-  <!-- Navbar -->
-  <nav class="bg-gray-800/80 backdrop-blur-md shadow-lg sticky top-0 z-40 border-b border-gray-700">
+  <!-- Enhanced Navbar -->
+  <nav class="bg-gray-800/90 backdrop-blur-sm shadow-2xl sticky top-0 z-40 border-b border-gray-600/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center">
-          <svg class="h-8 w-8 text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path fill-rule="evenodd"
-              d="M12.516 2.17a.75.75 0 00-1.032 0L3.32 9.25a.75.75 0 00.516 1.28h.171l.527 4.903a.75.75 0 00.742.667h8.498a.75.75 0 00.742-.667l.527-4.903h.171a.75.75 0 00.516-1.28L12.516 2.17zM11.25 16.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
-              clip-rule="evenodd" />
-            <path
-              d="M21.75 9.25a.75.75 0 00-1.032-.019l-8.47 7.058a.75.75 0 00-.336.618V19.5a.75.75 0 00.75.75h8.25a.75.75 0 00.75-.75v-9.142a.75.75 0 00-.218-.508z" />
-          </svg>
-          <span class="ml-2 text-2xl font-bold text-white">Echo<span
+        <a href="index.html" class="flex items-center group">
+          <div class="relative">
+            <svg class="h-8 w-8 text-cyan-400 transition-transform group-hover:scale-110"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M12.516 2.17a.75.75 0 00-1.032 0L3.32 9.25a.75.75 0 00.516 1.28h.171l.527 4.903a.75.75 0 00.742.667h8.498a.75.75 0 00.742-.667l.527-4.903h.171a.75.75 0 00.516-1.28L12.516 2.17zM11.25 16.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
+                clip-rule="evenodd" />
+              <path
+                d="M21.75 9.25a.75.75 0 00-1.032-.019l-8.47 7.058a.75.75 0 00-.336.618V19.5a.75.75 0 00.75.75h8.25a.75.75 0 00.75-.75v-9.142a.75.75 0 00-.218-.508z" />
+            </svg>
+            <div
+              class="absolute -inset-1 rounded-full bg-cyan-400 opacity-20 blur group-hover:opacity-40 transition-opacity">
+            </div>
+          </div>
+          <span class="ml-3 text-2xl font-bold text-white">Echo<span
               class="font-light text-cyan-400">Watch</span></span>
         </a>
-        <div>
-          <a href="dashboard.html"
-            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+        <div class="flex space-x-1">
+          <a href="app.html"
+            class="text-gray-300 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-gray-700/50">Dashboard</a>
           <a href="settings.html"
-            class="text-cyan-400 bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Settings</a>
+            class="text-white bg-gradient-to-r from-cyan-500 to-cyan-600 px-4 py-2 rounded-lg text-sm font-medium shadow-lg">Settings</a>
         </div>
       </div>
     </div>
   </nav>
 
   <!-- Main Content -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <header class="mb-8">
-      <h1 class="text-3xl font-bold tracking-tight text-white">Settings</h1>
-      <p class="mt-1 text-gray-400">Manage your cameras, alerts, and account preferences.</p>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+    <header class="mb-12 fade-in">
+      <h1 class="text-4xl font-bold tracking-tight text-white mb-2">Settings</h1>
+      <p class="text-xl text-gray-300">Manage your cameras, alerts, and account preferences.</p>
+      <div class="mt-4 h-1 w-24 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
     </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-      <!-- Sidebar Navigation -->
-      <aside class="md:col-span-1">
-        <nav class="space-y-1">
-          <a href="#" data-target="panel-cameras"
-            class="nav-link group flex items-center px-3 py-2 text-sm font-medium rounded-md">Camera Management</a>
-          <a href="#" data-target="panel-alerts"
-            class="nav-link group flex items-center px-3 py-2 text-sm font-medium rounded-md">Alert Configuration</a>
-          <a href="#" data-target="panel-notifications"
-            class="nav-link group flex items-center px-3 py-2 text-sm font-medium rounded-md">Notifications</a>
-          <a href="#" data-target="panel-account"
-            class="nav-link group flex items-center px-3 py-2 text-sm font-medium rounded-md">Account</a>
-        </nav>
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <!-- Enhanced Sidebar Navigation -->
+      <aside class="lg:col-span-1 fade-in fade-in-delay-1">
+        <div class="bg-gray-800/60 rounded-xl border border-gray-600/50 p-6 sticky top-24">
+          <h3 class="text-lg font-semibold text-white mb-4">Navigation</h3>
+          <nav class="space-y-2">
+            <a href="#panel-cameras" data-target="panel-cameras"
+              class="nav-link group flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300">
+              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+                </path>
+              </svg>
+              Camera Management
+            </a>
+            <a href="#panel-alerts" data-target="panel-alerts"
+              class="nav-link group flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300">
+              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z">
+                </path>
+              </svg>
+              Alert Configuration
+            </a>
+            <a href="#panel-notifications" data-target="panel-notifications"
+              class="nav-link group flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300">
+              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 10h.01M15 10h.01M21 16V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2z"></path>
+              </svg>
+              Notifications
+            </a>
+            <a href="#panel-account" data-target="panel-account"
+              class="nav-link group flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300">
+              <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+              Account
+            </a>
+          </nav>
+        </div>
       </aside>
 
-      <!-- Settings Panels -->
-      <main class="md:col-span-3">
+      <!-- Enhanced Settings Panels -->
+      <main class="lg:col-span-3 space-y-6 fade-in fade-in-delay-2">
         <!-- Camera Management Panel -->
-        <div id="panel-cameras" class="settings-panel bg-gray-800 rounded-xl border border-gray-700 p-6">
-          <h2 class="text-xl font-semibold mb-4 text-white">Camera Management</h2>
-          <div class="space-y-6">
-            <div>
-              <label for="camera-count" class="block text-sm font-medium text-gray-300 mb-1">Number of Cameras</label>
+        <div id="panel-cameras" class="settings-panel settings-card rounded-xl p-8">
+          <div class="flex items-center mb-6">
+            <svg class="w-8 h-8 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+              </path>
+            </svg>
+            <h2 class="text-2xl font-bold text-white">Camera Management</h2>
+          </div>
+          <div class="space-y-8">
+            <div class="bg-gray-700/30 rounded-lg p-6">
+              <label for="camera-count" class="block text-sm font-semibold text-gray-300 mb-2">Total Connected
+                Cameras</label>
               <input type="number" name="camera-count" id="camera-count"
-                class="block w-24 bg-gray-700 border-gray-600 rounded-md shadow-sm focus:ring-cyan-500 focus:border-cyan-500"
-                readonly>
+                class="block w-32 enhanced-input rounded-lg px-4 py-2 text-white text-lg font-bold" readonly>
             </div>
-            <div class="border-t border-gray-700 pt-6">
-              <h3 class="text-lg font-medium text-white mb-4">Connected Cameras</h3>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-semibold text-white">Connected Cameras</h3>
+                <button id="add-camera-btn"
+                  class="btn-primary px-6 py-3 text-white font-semibold rounded-lg shadow-lg relative overflow-hidden">
+                  <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                  </svg>
+                  Add Camera
+                </button>
+              </div>
               <div id="camera-list-container" class="space-y-4">
                 <!-- Camera items will be dynamically inserted here -->
               </div>
-              <button id="add-camera-btn"
-                class="mt-6 px-4 py-2 bg-cyan-500 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-600">Add
-                New Camera</button>
-            </div>
-          </div>
-        </div>
-        <!-- Other Panels... -->
-        <div id="panel-alerts" class="settings-panel hidden bg-gray-800 rounded-xl border border-gray-700 p-6">
-          <h2 class="text-xl font-semibold mb-4 text-white">Alert Configuration</h2>
-          <div class="space-y-4">
-            <div class="flex items-center justify-between"><span class="text-gray-300">Enable Loitering
-                Alerts</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox"
-                  id="alert-loitering" class="sr-only peer">
-                <div
-                  class="w-11 h-6 bg-gray-600 rounded-full peer peer-focus:ring-2 peer-focus:ring-cyan-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-600">
-                </div>
-              </label></div>
-            <div class="flex items-center justify-between"><span class="text-gray-300">Enable Concealed Threat
-                Alerts</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox"
-                  id="alert-threat" class="sr-only peer">
-                <div
-                  class="w-11 h-6 bg-gray-600 rounded-full peer peer-focus:ring-2 peer-focus:ring-cyan-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-600">
-                </div>
-              </label></div>
-            <div class="flex items-center justify-between"><span class="text-gray-300">Enable Restricted Zone
-                Alerts</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox"
-                  id="alert-zone" class="sr-only peer">
-                <div
-                  class="w-11 h-6 bg-gray-600 rounded-full peer peer-focus:ring-2 peer-focus:ring-cyan-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-600">
-                </div>
-              </label></div>
-          </div>
-        </div>
-        <div id="panel-notifications" class="settings-panel hidden bg-gray-800 rounded-xl border border-gray-700 p-6">
-          <h2 class="text-xl font-semibold mb-4 text-white">Notifications</h2>
-          <div class="space-y-6">
-            <div><label for="notification-email" class="block text-sm font-medium text-gray-300 mb-1">Notification
-                Email</label><input type="email" name="email" id="notification-email"
-                class="block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm focus:ring-cyan-500 focus:border-cyan-500">
-            </div>
-            <div class="flex items-center justify-between"><span class="text-gray-300">Enable Email
-                Notifications</span><label class="relative inline-flex items-center cursor-pointer"><input
-                  type="checkbox" id="notification-toggle" class="sr-only peer">
-                <div
-                  class="w-11 h-6 bg-gray-600 rounded-full peer peer-focus:ring-2 peer-focus:ring-cyan-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-600">
-                </div>
-              </label></div>
-          </div>
-        </div>
-        <div id="panel-account" class="settings-panel hidden bg-gray-800 rounded-xl border border-gray-700 p-6">
-          <h2 class="text-xl font-semibold mb-4 text-white">Account</h2>
-          <div class="space-y-6">
-            <div><label for="account-username"
-                class="block text-sm font-medium text-gray-300 mb-1">Username</label><input type="text" name="username"
-                id="account-username"
-                class="block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm focus:ring-cyan-500 focus:border-cyan-500">
-            </div>
-            <div><label for="account-password" class="block text-sm font-medium text-gray-300 mb-1">New
-                Password</label><input type="password" name="password" id="account-password"
-                placeholder="Leave blank to keep current password"
-                class="block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm focus:ring-cyan-500 focus:border-cyan-500">
             </div>
           </div>
         </div>
 
-        <div class="mt-6 flex justify-end">
+        <!-- Alert Configuration Panel -->
+        <div id="panel-alerts" class="settings-panel hidden settings-card rounded-xl p-8">
+          <div class="flex items-center mb-6">
+            <svg class="w-8 h-8 text-orange-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z">
+              </path>
+            </svg>
+            <h2 class="text-2xl font-bold text-white">Alert Configuration</h2>
+          </div>
+          <div class="space-y-6">
+            <div class="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg">
+              <div>
+                <span class="text-gray-200 font-medium">Loitering Detection</span>
+                <p class="text-sm text-gray-400">Detect people remaining in areas for extended periods</p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="alert-loitering">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg">
+              <div>
+                <span class="text-gray-200 font-medium">Concealed Threat Detection</span>
+                <p class="text-sm text-gray-400">AI-powered detection of suspicious objects and behaviors</p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="alert-threat">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg">
+              <div>
+                <span class="text-gray-200 font-medium">Restricted Zone Alerts</span>
+                <p class="text-sm text-gray-400">Monitor unauthorized access to designated areas</p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="alert-zone">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications Panel -->
+        <div id="panel-notifications" class="settings-panel hidden settings-card rounded-xl p-8">
+          <div class="flex items-center mb-6">
+            <svg class="w-8 h-8 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+              </path>
+            </svg>
+            <h2 class="text-2xl font-bold text-white">Notification Settings</h2>
+          </div>
+          <div class="space-y-6">
+            <div class="bg-gray-700/30 rounded-lg p-6">
+              <label for="notification-email" class="block text-sm font-semibold text-gray-300 mb-3">Notification Email
+                Address</label>
+              <input type="email" name="email" id="notification-email"
+                class="block w-full enhanced-input rounded-lg px-4 py-3 text-white">
+            </div>
+            <div class="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg">
+              <div>
+                <span class="text-gray-200 font-medium">Enable Email Notifications</span>
+                <p class="text-sm text-gray-400">Receive real-time alerts via email</p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="notification-toggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Account Panel -->
+        <div id="panel-account" class="settings-panel hidden settings-card rounded-xl p-8">
+          <div class="flex items-center mb-6">
+            <svg class="w-8 h-8 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+            <h2 class="text-2xl font-bold text-white">Account Settings</h2>
+          </div>
+          <div class="space-y-6">
+            <div class="bg-gray-700/30 rounded-lg p-6">
+              <label for="account-username" class="block text-sm font-semibold text-gray-300 mb-3">Username</label>
+              <input type="text" name="username" id="account-username"
+                class="block w-full enhanced-input rounded-lg px-4 py-3 text-white">
+            </div>
+            <div class="bg-gray-700/30 rounded-lg p-6">
+              <label for="account-password" class="block text-sm font-semibold text-gray-300 mb-3">New Password</label>
+              <input type="password" name="password" id="account-password"
+                placeholder="Leave blank to keep current password"
+                class="block w-full enhanced-input rounded-lg px-4 py-3 text-white">
+            </div>
+          </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="flex justify-end pt-6">
           <button id="save-changes-btn" type="button"
-            class="px-6 py-2 bg-cyan-500 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-600">Save
-            Changes</button>
+            class="btn-primary px-8 py-3 text-white font-bold rounded-lg shadow-lg relative overflow-hidden">
+            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            Save All Changes
+          </button>
         </div>
       </main>
     </div>
   </div>
 
-  <!-- Add Camera Modal -->
+  <!-- Enhanced Add Camera Modal -->
   <div id="add-camera-modal"
-    class="modal-overlay fixed inset-0 z-50 bg-black/60 hidden items-center justify-center p-4">
-    <div class="bg-gray-800 rounded-xl shadow-lg w-full max-w-md p-6">
-      <h2 class="text-xl font-semibold text-white mb-4">Add a New Camera</h2>
+    class="modal-overlay fixed inset-0 z-50 bg-black/70 hidden items-center justify-center p-4">
+    <div class="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md p-8 transform transition-all glow-cyan">
+      <div class="flex items-center mb-6">
+        <svg class="w-8 h-8 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+        </svg>
+        <h2 class="text-2xl font-bold text-white">Add New Camera</h2>
+      </div>
       <form id="camera-form">
-        <div class="space-y-4">
+        <div class="space-y-6">
           <div>
-            <label for="new-camera-name" class="block text-sm font-medium text-gray-300">Camera Name</label>
+            <label for="new-camera-name" class="block text-sm font-semibold text-gray-300 mb-2">Camera Name</label>
             <input type="text" id="new-camera-name" placeholder="e.g., Lobby Entrance" required
-              class="mt-1 block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm focus:ring-cyan-500 focus:border-cyan-500">
+              class="w-full enhanced-input rounded-lg px-4 py-3 text-white">
           </div>
           <div>
-            <label for="new-camera-ip" class="block text-sm font-medium text-gray-300">IP Address or Stream URL</label>
+            <label for="new-camera-ip" class="block text-sm font-semibold text-gray-300 mb-2">IP Address or Stream
+              URL</label>
             <input type="text" id="new-camera-ip" placeholder="e.g., 192.168.1.103" required
-              class="mt-1 block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm focus:ring-cyan-500 focus:border-cyan-500">
+              class="w-full enhanced-input rounded-lg px-4 py-3 text-white">
           </div>
         </div>
-        <div class="mt-6 flex justify-end space-x-3">
+        <div class="mt-8 flex justify-end space-x-3">
           <button type="button" id="cancel-modal-btn"
-            class="px-4 py-2 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-500">Cancel</button>
+            class="btn-secondary px-6 py-3 text-white font-semibold rounded-lg">Cancel</button>
           <button type="submit"
-            class="px-4 py-2 bg-cyan-500 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-600">Add
+            class="btn-primary px-6 py-3 text-white font-semibold rounded-lg shadow-lg relative overflow-hidden">Add
             Camera</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Toast Notification -->
+  <!-- Enhanced Toast Notification -->
   <div id="toast-notification"
-    class="toast-notification fixed bottom-5 right-5 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transform translate-y-2 hidden">
-    Settings saved successfully!
+    class="toast-notification fixed bottom-6 right-6 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-4 rounded-xl shadow-2xl opacity-0 transform translate-y-2 hidden">
+    <div class="flex items-center">
+      <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+      <span class="font-semibold">Settings saved successfully!</span>
+    </div>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // --- DOM ELEMENT SELECTORS ---
-      const navLinks = document.querySelectorAll('.nav-link');
-      const settingsPanels = document.querySelectorAll('.settings-panel');
-      const cameraListContainer = document.getElementById('camera-list-container');
-      const cameraCountInput = document.getElementById('camera-count');
-      const addCameraBtn = document.getElementById('add-camera-btn');
-      const saveChangesBtn = document.getElementById('save-changes-btn');
-      const toast = document.getElementById('toast-notification');
-
-      // Modal elements
-      const modal = document.getElementById('add-camera-modal');
-      const cancelModalBtn = document.getElementById('cancel-modal-btn');
-      const cameraForm = document.getElementById('camera-form');
-      const newCameraNameInput = document.getElementById('new-camera-name');
-      const newCameraIpInput = document.getElementById('new-camera-ip');
-
-      // --- STATE MANAGEMENT ---
-      let settings = {};
-      const localStorageKey = 'echoWatchSettings';
-
-      const defaultSettings = {
-        cameras: [
-          { name: 'Entrance A', ip: '192.168.1.101' },
-          { name: 'Corridor B', ip: '192.168.1.102' }
-        ],
-        alerts: {
-          loitering: true,
-          threat: true,
-          zone: false,
-        },
-        notifications: {
-          email: 'security-team@example.com',
-          enabled: true
-        },
-        account: {
-          username: 'AdminUser'
-        }
-      };
-
-      // --- FUNCTIONS ---
-
-      // Function to render the list of cameras
-      const renderCameras = () => {
-        cameraListContainer.innerHTML = ''; // Clear existing list
-        settings.cameras.forEach((camera, index) => {
-          const cameraElement = document.createElement('div');
-          cameraElement.className = 'flex items-center justify-between p-3 bg-gray-700/50 rounded-lg';
-          cameraElement.innerHTML = `
-            <input type="text" value="${camera.name}" data-index="${index}" class="camera-name-input bg-transparent text-white w-full focus:outline-none focus:ring-1 focus:ring-cyan-500 rounded px-1">
-            <span class="text-xs font-mono text-gray-400 mr-4">${camera.ip}</span>
-            <button data-index="${index}" class="remove-camera-btn text-red-400 hover:text-red-600 text-sm">Remove</button>
-          `;
-          cameraListContainer.appendChild(cameraElement);
-        });
-        cameraCountInput.value = settings.cameras.length;
-      };
-
-      // Function to render all settings to the UI
-      const renderAllSettings = () => {
-        // Render cameras
-        renderCameras();
-        // Render alerts
-        document.getElementById('alert-loitering').checked = settings.alerts.loitering;
-        document.getElementById('alert-threat').checked = settings.alerts.threat;
-        document.getElementById('alert-zone').checked = settings.alerts.zone;
-        // Render notifications
-        document.getElementById('notification-email').value = settings.notifications.email;
-        document.getElementById('notification-toggle').checked = settings.notifications.enabled;
-        // Render account
-        document.getElementById('account-username').value = settings.account.username;
-      };
-
-      // Load settings from localStorage or use defaults
-      const loadSettings = () => {
-        const savedSettings = localStorage.getItem(localStorageKey);
-        settings = savedSettings ? JSON.parse(savedSettings) : defaultSettings;
-        renderAllSettings();
-      };
-
-      // Save all current settings from UI to localStorage
-      const saveSettings = () => {
-        // Gather camera names from inputs
-        document.querySelectorAll('.camera-name-input').forEach(input => {
-          const index = input.getAttribute('data-index');
-          settings.cameras[index].name = input.value;
-        });
-
-        // Gather other settings
-        settings.alerts.loitering = document.getElementById('alert-loitering').checked;
-        settings.alerts.threat = document.getElementById('alert-threat').checked;
-        settings.alerts.zone = document.getElementById('alert-zone').checked;
-        settings.notifications.email = document.getElementById('notification-email').value;
-        settings.notifications.enabled = document.getElementById('notification-toggle').checked;
-        settings.account.username = document.getElementById('account-username').value;
-        // Note: We don't save the password for security reasons
-
-        localStorage.setItem(localStorageKey, JSON.stringify(settings));
-        showToast();
-      };
-
-      const showToast = () => {
-        toast.classList.remove('hidden');
-        setTimeout(() => {
-          toast.classList.remove('opacity-0', 'translate-y-2');
-        }, 10); // small delay to allow display change
-        setTimeout(() => {
-          toast.classList.add('opacity-0', 'translate-y-2');
-          setTimeout(() => toast.classList.add('hidden'), 300);
-        }, 3000); // hide after 3 seconds
-      };
-
-      // --- EVENT LISTENERS ---
-
-      // Tab navigation
-      navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute('data-target');
-          navLinks.forEach(nav => nav.classList.remove('active'));
-          link.classList.add('active');
-          settingsPanels.forEach(panel => {
-            panel.id === targetId ? panel.classList.remove('hidden') : panel.classList.add('hidden');
-          });
-        });
-      });
-      // Set first tab active on load
-      navLinks[0].classList.add('active');
-      settingsPanels[0].classList.remove('hidden');
-
-
-      // Modal listeners
-      addCameraBtn.addEventListener('click', () => modal.classList.remove('hidden'));
-      cancelModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.classList.add('hidden');
-      });
-
-      // Form submission for new camera
-      cameraForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const newCamera = {
-          name: newCameraNameInput.value,
-          ip: newCameraIpInput.value
-        };
-        settings.cameras.push(newCamera);
-        renderCameras(); // Re-render the camera list
-        modal.classList.add('hidden'); // Hide modal
-        cameraForm.reset(); // Reset form fields
-      });
-
-      // Listener for removing a camera (using event delegation)
-      cameraListContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-camera-btn')) {
-          const indexToRemove = parseInt(e.target.getAttribute('data-index'));
-          settings.cameras.splice(indexToRemove, 1); // Remove from array
-          renderCameras(); // Re-render the list
-        }
-      });
-
-      // Save changes button
-      saveChangesBtn.addEventListener('click', saveSettings);
-
-      // --- INITIALIZATION ---
-      loadSettings();
-    });
-  </script>
-
-</body>
-
-</html>
