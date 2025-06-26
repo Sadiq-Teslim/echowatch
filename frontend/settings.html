@@ -16,10 +16,8 @@
 </head>
 
 <body class="gradient-bg text-gray-100 min-h-screen">
-  <!-- Subtle particles background -->
   <div class="particles" id="particles"></div>
 
-  <!-- Enhanced Navbar -->
   <nav class="bg-gray-800/90 backdrop-blur-sm shadow-2xl sticky top-0 z-40 border-b border-gray-600/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
@@ -50,7 +48,6 @@
     </div>
   </nav>
 
-  <!-- Main Content -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
     <header class="mb-12 fade-in">
       <h1 class="text-4xl font-bold tracking-tight text-white mb-2">Settings</h1>
@@ -59,7 +56,6 @@
     </header>
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-      <!-- Enhanced Sidebar Navigation -->
       <aside class="lg:col-span-1 fade-in fade-in-delay-1">
         <div class="bg-gray-800/60 rounded-xl border border-gray-600/50 p-6 sticky top-24">
           <h3 class="text-lg font-semibold text-white mb-4">Navigation</h3>
@@ -103,9 +99,7 @@
         </div>
       </aside>
 
-      <!-- Enhanced Settings Panels -->
       <main class="lg:col-span-3 space-y-6 fade-in fade-in-delay-2">
-        <!-- Camera Management Panel -->
         <div id="panel-cameras" class="settings-panel settings-card rounded-xl p-8">
           <div class="flex items-center mb-6">
             <svg class="w-8 h-8 text-cyan-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,13 +129,11 @@
                 </button>
               </div>
               <div id="camera-list-container" class="space-y-4">
-                <!-- Camera items will be dynamically inserted here -->
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Alert Configuration Panel -->
         <div id="panel-alerts" class="settings-panel hidden settings-card rounded-xl p-8">
           <div class="flex items-center mb-6">
             <svg class="w-8 h-8 text-orange-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +177,6 @@
           </div>
         </div>
 
-        <!-- Notifications Panel -->
         <div id="panel-notifications" class="settings-panel hidden settings-card rounded-xl p-8">
           <div class="flex items-center mb-6">
             <svg class="w-8 h-8 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -215,7 +206,6 @@
           </div>
         </div>
 
-        <!-- Account Panel -->
         <div id="panel-account" class="settings-panel hidden settings-card rounded-xl p-8">
           <div class="flex items-center mb-6">
             <svg class="w-8 h-8 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,7 +229,6 @@
           </div>
         </div>
 
-        <!-- Save Button -->
         <div class="flex justify-end pt-6">
           <button id="save-changes-btn" type="button"
             class="btn-primary px-8 py-3 text-white font-bold rounded-lg shadow-lg relative overflow-hidden">
@@ -253,7 +242,6 @@
     </div>
   </div>
 
-  <!-- Enhanced Add Camera Modal -->
   <div id="add-camera-modal"
     class="modal-overlay fixed inset-0 z-50 bg-black/70 hidden items-center justify-center p-4">
     <div class="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md p-8 transform transition-all glow-cyan">
@@ -288,7 +276,6 @@
     </div>
   </div>
 
-  <!-- Enhanced Toast Notification -->
   <div id="toast-notification"
     class="toast-notification fixed bottom-6 right-6 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-4 rounded-xl shadow-2xl opacity-0 transform translate-y-2 hidden">
     <div class="flex items-center">
@@ -298,3 +285,6 @@
       <span class="font-semibold">Settings saved successfully!</span>
     </div>
   </div>
+</body>
+
+</html>
