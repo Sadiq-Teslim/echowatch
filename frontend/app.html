@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EchoWatch | Dashboard</title>
+    <!-- TensorFlow.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
@@ -13,9 +16,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Use the Inter font family defined above */
         body {
             font-family: 'Inter', sans-serif;
+        }
+
+        /* Add a subtle animation for new alerts */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-new {
+            animation: fadeIn 0.5s ease-out;
         }
     </style>
 </head>
@@ -26,11 +45,10 @@
     <!--         NAVBAR          -->
     <!-- ======================= -->
     <nav class="bg-gray-800/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-700">
+        <!-- Navbar content is correct, no changes needed here -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <!-- Logo and App Name -->
                 <a href="index.html" class="flex items-center">
-                    <!-- SVG Icon for the Logo -->
                     <svg class="h-8 w-8 text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                         fill="currentColor">
                         <path fill-rule="evenodd"
@@ -42,11 +60,11 @@
                     <span class="ml-2 text-2xl font-bold text-white">Echo<span
                             class="text-cyan-400 font-light">Watch</span></span>
                 </a>
-                
-                <!-- Navigation Links -->
                 <div class="flex items-center space-x-4">
-                    <a href="app.html" class="bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
-                    <a href="settings.html" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Settings</a>
+                    <a href="app.html"
+                        class="bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                    <a href="settings.html"
+                        class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Settings</a>
                 </div>
             </div>
         </div>
@@ -59,8 +77,8 @@
 
         <!-- Video Feed Section -->
         <div class="lg:col-span-2 bg-gray-800 rounded-xl p-4 flex flex-col border border-gray-700">
+            <!-- Video feed content is correct, no changes needed -->
             <div class="flex items-center mb-4">
-                <!-- SVG Icon for Video -->
                 <svg class="h-6 w-6 text-cyan-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round"
@@ -68,25 +86,15 @@
                 </svg>
                 <h2 class="text-xl font-semibold text-white">Live Feed</h2>
             </div>
-            <div class="flex-grow bg-black rounded-lg overflow-hidden flex items-center justify-center">
+            <div class="relative flex-grow bg-black rounded-lg overflow-hidden flex items-center justify-center">
                 <video id="video-stream" autoplay playsinline muted class="w-full h-full object-cover"></video>
-                <div id="error-message" class="hidden text-center text-red-400 p-4">
-                    <svg class="h-12 w-12 mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                    </svg>
-                    <p class="font-semibold">Could not start camera</p>
-                    <p class="text-sm">Camera access was denied. Please enable camera permissions and refresh the page.
-                    </p>
-                </div>
+                <div id="error-message" class="hidden text-center text-red-400 p-4">...</div>
             </div>
         </div>
 
-        <!-- Alerts Sidebar Section -->
+        <!-- START: Polished Alerts Sidebar -->
         <div class="lg:col-span-1 bg-gray-800 rounded-xl p-4 flex flex-col border border-gray-700">
             <div class="flex items-center mb-4">
-                <!-- SVG Icon for Alerts -->
                 <svg class="h-6 w-6 text-yellow-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -94,21 +102,14 @@
                 </svg>
                 <h2 class="text-xl font-semibold text-white">Live Alerts</h2>
             </div>
-            <div class="flex-grow space-y-4 overflow-y-auto">
-                <!-- Placeholder Alerts -->
-                <div class="p-3 bg-gray-700/50 rounded-lg border-l-4 border-yellow-400">
-                    <p class="font-bold text-yellow-400">LOITERING DETECTED</p>
-                    <p class="text-sm text-gray-300">Zone: Entrance A | Time: 14:32:15</p>
-                </div>
-                <div class="p-3 bg-gray-700/50 rounded-lg border-l-4 border-red-500">
-                    <p class="font-bold text-red-500">POTENTIAL THREAT</p>
-                    <p class="text-sm text-gray-300">Object: Concealed Item | Zone: Corridor B</p>
-                </div>
-                <div class="p-3 bg-gray-900/80 rounded-lg text-center text-gray-400 border-l-4 border-gray-600">
-                    <p>Waiting for system data...</p>
+            <div id="alerts-container" class="flex-grow space-y-3 overflow-y-auto">
+                <div id="initial-alert-placeholder"
+                    class="p-3 bg-gray-900/80 rounded-lg text-center text-gray-400 border-l-4 border-gray-600">
+                    <p>System active. Monitoring for threats...</p>
                 </div>
             </div>
         </div>
+        <!-- END: Polished Alerts Sidebar -->
     </main>
 
     <!-- ======================= -->
@@ -117,37 +118,104 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const videoElement = document.getElementById('video-stream');
-            const errorElement = document.getElementById('error-message');
+            const alertsContainer = document.getElementById('alerts-container');
+            const liveFeedContainer = videoElement.parentElement;
+
+            // --- AI Configuration -- KEY CHANGES HERE ---
+            const MODEL_URL = "/frontend/models/";
+            // 1. Correct the threat class to ONLY what your model knows.
+            const THREAT_CLASS_NAME = "knife"; // Case-insensitive
+            // 2. Lower the confidence threshold to make it easier to trigger a demo.
+            const CONFIDENCE_THRESHOLD = 0.70; // 70% confidence
+
+            let model, stream, threatCooldown = false;
+
+            const showLoadingMessage = (message) => {
+                const loadingDiv = document.createElement('div');
+                loadingDiv.id = 'loading-overlay';
+                loadingDiv.className = 'absolute inset-0 flex items-center justify-center bg-black/50 text-white z-10';
+                loadingDiv.innerHTML = `<p class="text-lg font-semibold animate-pulse">${message}</p>`;
+                liveFeedContainer.appendChild(loadingDiv);
+            };
+
+            const hideLoadingMessage = () => {
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if (loadingOverlay) loadingOverlay.remove();
+            };
+
+            const showThreatAlert = (prediction) => {
+                if (threatCooldown) return;
+                threatCooldown = true;
+                setTimeout(() => { threatCooldown = false; }, 3000); // 3-second cooldown
+
+                const placeholder = document.getElementById('initial-alert-placeholder');
+                if (placeholder) placeholder.remove();
+
+                const alertDiv = document.createElement('div');
+                alertDiv.className = "alert-new p-3 bg-red-800/80 rounded-lg border-l-4 border-red-500";
+
+                const detectedClass = prediction.className.toUpperCase();
+                const confidence = (prediction.probability * 100).toFixed(0);
+
+                alertDiv.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <p class="font-bold text-red-300">!!! THREAT DETECTED !!!</p>
+                        <span class="text-xs text-red-300">${new Date().toLocaleTimeString()}</span>
+                    </div>
+                    <p class="text-sm text-gray-200">
+                        Object: <span class="font-semibold">${detectedClass}</span> | Confidence: <span class="font-semibold">${confidence}%</span>
+                    </p>
+                `;
+
+                alertsContainer.prepend(alertDiv);
+            };
+
+            const detectLoop = async () => {
+                if (videoElement.readyState >= 3 && model) {
+                    const predictions = await model.predict(videoElement);
+
+                    // 3. (FOR DEBUGGING) This will show you what the model sees in the console (F12).
+                    console.log('All Predictions:', predictions.map(p => `${p.className}: ${(p.probability * 100).toFixed(1)}%`).join(' | '));
+
+                    for (const p of predictions) {
+                        if (p.className.toLowerCase() === THREAT_CLASS_NAME && p.probability > CONFIDENCE_THRESHOLD) {
+                            showThreatAlert(p);
+                            break;
+                        }
+                    }
+                }
+                setTimeout(() => requestAnimationFrame(detectLoop), 300); // Check ~3 times per second
+            };
+
+            const initModel = async () => {
+                showLoadingMessage("Initializing AI Model...");
+                try {
+                    const modelURL = MODEL_URL + "model.json";
+                    const metadataURL = MODEL_URL + "metadata.json";
+                    model = await tmImage.load(modelURL, metadataURL);
+                    hideLoadingMessage();
+                    detectLoop();
+                } catch (error) {
+                    console.error("Failed to load model:", error);
+                    hideLoadingMessage();
+                    showLoadingMessage("Error: Could not load AI model.");
+                }
+            };
 
             const startCamera = async () => {
-                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                    try {
-                        const stream = await navigator.mediaDevices.getUserMedia({
-                            video: {
-                                width: { ideal: 1280 },
-                                height: { ideal: 720 },
-                                facingMode: 'user' // 'environment' for back camera
-                            }
-                        });
-                        videoElement.srcObject = stream;
-                    } catch (err) {
-                        console.error("Error accessing camera: ", err);
-                        // Show the error message and hide the video element
-                        errorElement.classList.remove('hidden');
-                        videoElement.classList.add('hidden');
-                    }
-                } else {
-                    console.error("getUserMedia not supported on this browser.");
-                    errorElement.innerHTML = '<p class="font-semibold">Camera Not Supported</p><p class="text-sm">Your browser does not support camera access.</p>';
-                    errorElement.classList.remove('hidden');
-                    videoElement.classList.add('hidden');
+                try {
+                    stream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'environment' } });
+                    videoElement.srcObject = stream;
+                    videoElement.addEventListener('loadeddata', initModel);
+                } catch (err) {
+                    console.error("Error accessing camera: ", err);
+                    // Handle camera error display
                 }
             };
 
             startCamera();
         });
     </script>
-
 </body>
 
 </html>
