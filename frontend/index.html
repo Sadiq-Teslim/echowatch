@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoWatch - Proactive AI Security</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <!-- ======================= -->
+    <!--         NAVBAR          -->
+    <!-- ======================= -->
+    <nav class="bg-gray-800/80 backdrop-blur-md shadow-lg w-full sticky top-0 z-50 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo and App Name -->
+                <a href="#" class="flex-shrink-0 flex items-center">
+                    <svg class="h-8 w-8 text-cyan-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0L3.32 9.25a.75.75 0 00.516 1.28h.171l.527 4.903a.75.75 0 00.742.667h8.498a.75.75 0 00.742-.667l.527-4.903h.171a.75.75 0 00.516-1.28L12.516 2.17zM11.25 16.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clip-rule="evenodd" />
+                        <path d="M21.75 9.25a.75.75 0 00-1.032-.019l-8.47 7.058a.75.75 0 00-.336.618V19.5a.75.75 0 00.75.75h8.25a.75.75 0 00.75-.75v-9.142a.75.75 0 00-.218-.508z" />
+                    </svg>
+                    <span class="ml-2 text-2xl font-bold text-white">Echo<span class="font-light text-cyan-400">Watch</span></span>
+                </a>
+                <!-- Call to Action Button in Nav -->
+                <a href="dashboard.html" class="hidden sm:inline-block px-5 py-2 bg-cyan-500 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-600 transition-colors">
+                    Live Demo
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======================= -->
+    <!--      LANDING PAGE       -->
+    <!-- ======================= -->
+    <div class="flex flex-col items-center justify-center p-6 md:p-12">
+        <!-- Hero Section -->
+        <header class="text-center max-w-4xl mx-auto mt-16 mb-24">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight">
+                Echo<span class="text-cyan-400">Watch</span>
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300">
+                Giving your security the "spidey sense" it's always needed.
+            </p>
+            <p class="mt-6 max-w-2xl mx-auto text-gray-400">
+                We use proactive AI to detect threats and unusual behavior *before* they escalate. See what's coming, not just what's happened.
+            </p>
+            <a href="dashboard.html">
+                <button class="mt-10 px-8 py-4 bg-cyan-500 text-white font-bold rounded-lg shadow-lg hover:bg-cyan-600 transition-transform transform hover:scale-105">
+                    See Live Demo
+                </button>
+            </a>
+        </header>
+
+        <!-- Problem & Impact Sections -->
+        <main class="w-full max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 text-center md:text-left">
+                <!-- The Problem -->
+                <div class="p-8 bg-gray-800/50 rounded-xl border border-gray-700">
+                    <div class="flex items-center justify-center md:justify-start mb-4">
+                        <svg class="h-8 w-8 text-red-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold">The Problem: Reactive Security</h2>
+                    </div>
+                    <p class="text-gray-400">
+                        Traditional security systems are reactive. They record events but can't prevent them. By the time an alarm is raised, it's often too late. Subtle signs of aggression, loitering, or distress are completely missed.
+                    </p>
+                </div>
+
+                <!-- The Impact -->
+                <div class="p-8 bg-gray-800/50 rounded-xl border border-gray-700">
+                    <div class="flex items-center justify-center md:justify-start mb-4">
+                        <svg class="h-8 w-8 text-green-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.6-3.752A11.959 11.959 0 0118 6c0 2.705-1.075 5.226-2.848 7.098L12.5 10.5z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold">Our Impact: Proactive Prevention</h2>
+                    </div>
+                    <p class="text-gray-400">
+                        EchoWatch acts as an early warning system. Our AI analyzes live feeds for pre-incident indicators—like nervous pacing or sudden tension—giving security teams the crucial seconds they need to intervene.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-24 text-gray-500">
+            <p>© <span id="current-year"></span> EchoWatch. A new era of security.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Simple script to set the current year in the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
