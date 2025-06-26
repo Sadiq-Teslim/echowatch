@@ -17,6 +17,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            /* Prevent the whole page from scrolling */
+            overflow: hidden;
         }
 
         @keyframes blink {
@@ -28,12 +30,18 @@
         .blinking-alert {
             animation: blink 1s linear infinite;
         }
+
+        /* <!-- KEY CSS FIX: Constrain the main content area height --> */
+        .main-content-area {
+            /* Full viewport height minus the navbar height (h-16 = 4rem) */
+            height: calc(100vh - 4rem);
+        }
     </style>
 </head>
 
 <body class="bg-gray-900 text-gray-100">
 
-    <!-- Restored Navbar -->
+    <!-- Navbar -->
     <nav class="bg-gray-800/80 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -59,10 +67,10 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto p-4 md:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Main Content with Layout Fix -->
+    <main class="main-content-area max-w-7xl mx-auto p-4 md:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-        <!-- Video Feed Section (Your UI) -->
+        <!-- Video Feed Section -->
         <div class="lg:col-span-2 bg-gray-800 rounded-xl p-4 flex flex-col border border-gray-700">
             <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
                 <svg class="h-6 w-6 text-cyan-400 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -86,26 +94,26 @@
             </div>
         </div>
 
-        <!-- Alerts Sidebar (Your UI) -->
-        <div class="lg:col-span-1 bg-gray-800 rounded-xl p-4 flex flex-col border border-gray-700">
-            <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
-                <svg class="h-6 w-6 text-yellow-400 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor">
+        <!-- Alerts Sidebar -->
+        <div class="lg:col-span-1 bg-gray-800 rounded-xl p-4 flex flex-col border border-gray-700 overflow-hidden">
+            <h2 class="text-xl font-semibold text-white mb-4 flex-shrink-0">
+                <svg class="h-6 w-6 text-yellow-400 mr-2 inline-block" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                 </svg>
                 Live Alerts
             </h2>
-            <div id="alerts-container" class="flex-grow space-y-3 overflow-y-auto">
+            <div id="alerts-container" class="flex-grow space-y-3 overflow-y-auto pr-2">
                 <div id="initial-alert-placeholder"
                     class="p-3 bg-gray-900/80 rounded-lg text-center text-gray-400 border-l-4 border-gray-600">
-                    <p>System active. Monitoring for threats...</p>
+                    <p>Real-time Detection is live!</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <audio id="alert-sound" src="./public/alert.mp3" preload="auto"></audio>
+    <audio id="alert-sound" src="public/alert.mp3" preload="auto"></audio>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -117,7 +125,8 @@
             const threatRisk = document.getElementById('threat-risk');
             const alertSound = document.getElementById('alert-sound');
 
-            const MODEL_URL = "/models/";
+            // --- KEY JAVASCRIPT FIX: Use relative paths for deployment ---
+            const MODEL_URL = "models/";
             const THREAT_CLASS_NAME = "armed";
             const CONFIDENCE_THRESHOLD = 0.75;
             const RISK_BOOST = 8;
@@ -135,6 +144,8 @@
                     isAudioUnlocked = true;
                     console.log("Audio has been unlocked by user interaction.");
                     document.body.removeEventListener('click', unlockAudio);
+                    const placeholder = document.getElementById('initial-alert-placeholder');
+                    if (placeholder) placeholder.innerHTML = '<p>System active. Audio enabled.</p>';
                 }).catch(e => console.warn("Could not unlock audio. Alerts may be silent.", e));
             };
 
@@ -142,9 +153,9 @@
                 const placeholder = document.getElementById('initial-alert-placeholder');
                 if (placeholder) placeholder.remove();
                 const alertDiv = document.createElement('div');
-                alertDiv.className = "p-3 bg-red-800/80 rounded-lg border-l-4 border-red-500";
+                alertDiv.className = "p-3 bg-red-800/80 rounded-lg border-l-4 border-red-500 flex-shrink-0";
                 const detectedClass = prediction.className.toUpperCase();
-                alertDiv.innerHTML = `<div class="flex justify-between items-center"><p class="font-bold text-red-300">THREAT LOGGED</p><span class="text-xs text-red-300">${new Date().toLocaleTimeString()}</span></div><p class="text-sm text-gray-200">Object: <span class="font-semibold">${detectedClass}</span> | Risk Factor: <span class="font-semibold">${riskPercent}%</span></p>`;
+                alertDiv.innerHTML = `<div class="flex justify-between items-center"><p class="font-bold text-red-300">THREAT DETECTED</p><span class="text-xs text-red-300">${new Date().toLocaleTimeString()}</span></div><p class="text-sm text-gray-200">Object: <span class="font-semibold">${detectedClass}</span> | Risk Factor: <span class="font-semibold">${riskPercent}%</span></p>`;
                 alertsContainer.prepend(alertDiv);
             };
 
@@ -161,6 +172,8 @@
                 if (isAudioUnlocked) {
                     alertSound.currentTime = 0;
                     alertSound.play();
+                } else {
+                    console.warn("Alert triggered, but audio is not unlocked. Click the page.");
                 }
 
                 logAlertToSidebar(prediction, riskPercent);
@@ -187,9 +200,9 @@
             const initModel = async () => {
                 updateLoadingMessage("Initializing AI Model...");
                 try {
-                    const modelURL = MODEL_URL + "model.json";
-                    const metadataURL = MODEL_URL + "metadata.json";
-                    model = await tmImage.load(modelURL, metadataURL);
+                    const modelURL_full = MODEL_URL + "model.json";
+                    const metadataURL_full = MODEL_URL + "metadata.json";
+                    model = await tmImage.load(modelURL_full, metadataURL_full);
                     hideLoadingMessage();
                     detectLoop();
                 } catch (error) {
@@ -201,13 +214,8 @@
             const startCamera = async () => {
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'environment' } });
-
-                    // START: THE BUG FIX
-                    // Set up the listener BEFORE setting the video source.
                     videoElement.onloadeddata = () => initModel();
                     videoElement.srcObject = stream;
-                    // END: THE BUG FIX
-
                 } catch (err) {
                     console.error("Error accessing camera: ", err);
                     updateLoadingMessage("Camera Access Denied.");
