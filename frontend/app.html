@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -62,16 +62,12 @@
     </nav>
 
     <main class="main-content-area max-w-7xl mx-auto p-4 md:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-
         <div class="lg:col-span-2 bg-gray-800 rounded-xl p-4 flex flex-col border border-gray-700">
-            <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
-                <svg class="h-6 w-6 text-cyan-400 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor">
+            <h2 class="text-xl font-semibold text-white mb-4 flex items-center"><svg class="h-6 w-6 text-cyan-400 mr-2"
+                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round"
                         d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
-                </svg>
-                Live Feed
-            </h2>
+                </svg>Live Feed</h2>
             <div class="relative flex-grow bg-black rounded-lg overflow-hidden flex items-center justify-center">
                 <video id="video-stream" autoplay playsinline muted class="w-full h-full object-cover"></video>
                 <div id="threat-banner"
@@ -85,20 +81,17 @@
                 </div>
             </div>
         </div>
-
         <div class="lg:col-span-1 bg-gray-800 rounded-xl p-4 flex flex-col border border-gray-700 overflow-hidden">
-            <h2 class="text-xl font-semibold text-white mb-4 flex-shrink-0">
-                <svg class="h-6 w-6 text-yellow-400 mr-2 inline-block" fill="none" viewBox="0 0 24 24"
-                    stroke-width="1.5" stroke="currentColor">
+            <h2 class="text-xl font-semibold text-white mb-4 flex-shrink-0"><svg
+                    class="h-6 w-6 text-yellow-400 mr-2 inline-block" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                </svg>
-                Live Alerts
-            </h2>
+                </svg>Live Alerts</h2>
             <div id="alerts-container" class="flex-grow space-y-3 overflow-y-auto pr-2">
                 <div id="initial-alert-placeholder"
                     class="p-3 bg-gray-900/80 rounded-lg text-center text-gray-400 border-l-4 border-gray-600">
-                    <p>Real-time Detection is live!</p>
+                    <p>Click page to enable audio alerts.</p>
                 </div>
             </div>
         </div>
@@ -108,6 +101,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // === DOM Elements ===
             const videoElement = document.getElementById('video-stream');
             const alertsContainer = document.getElementById('alerts-container');
             const loadingOverlay = document.getElementById('loading-overlay');
@@ -116,27 +110,41 @@
             const threatRisk = document.getElementById('threat-risk');
             const alertSound = document.getElementById('alert-sound');
 
-            const MODEL_URL = "/frontend/models/";
+            // === Configuration ===
+            const MODEL_URL = "models/"; // Relative path for deployment
             const THREAT_CLASS_NAME = "armed";
             const CONFIDENCE_THRESHOLD = 0.75;
             const RISK_BOOST = 8;
 
+            // === State ===
             let model, isAlertActive = false, isAudioUnlocked = false;
 
-            const updateLoadingMessage = (message) => { if (loadingOverlay) loadingOverlay.querySelector('p').textContent = message; };
-            const hideLoadingMessage = () => { if (loadingOverlay) loadingOverlay.classList.add('hidden'); };
+            // === Helper Functions ===
+            const updateLoadingMessage = (message) => {
+                if (loadingOverlay) loadingOverlay.querySelector('p').textContent = message;
+            };
+
+            const hideLoadingMessage = () => {
+                if (loadingOverlay) loadingOverlay.classList.add('hidden');
+            };
 
             const unlockAudio = () => {
                 if (isAudioUnlocked) return;
-                alertSound.play().then(() => {
-                    alertSound.pause();
-                    alertSound.currentTime = 0;
-                    isAudioUnlocked = true;
-                    console.log("Audio has been unlocked by user interaction.");
-                    document.body.removeEventListener('click', unlockAudio);
-                    const placeholder = document.getElementById('initial-alert-placeholder');
-                    if (placeholder) placeholder.innerHTML = '<p>System active. Audio enabled.</p>';
-                }).catch(e => console.warn("Could not unlock audio. Alerts may be silent.", e));
+
+                // The most reliable way to unlock audio
+                const playPromise = alertSound.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        alertSound.pause();
+                        alertSound.currentTime = 0;
+                        isAudioUnlocked = true;
+                        console.log("Audio has been unlocked by user interaction.");
+                        const placeholder = document.getElementById('initial-alert-placeholder');
+                        if (placeholder) placeholder.innerHTML = '<p>System active. Audio enabled.</p>';
+                    }).catch(error => {
+                        console.warn("Could not unlock audio automatically. Alerts may be silent until next interaction.", error);
+                    });
+                }
             };
 
             const logAlertToSidebar = (prediction, riskPercent) => {
@@ -152,8 +160,10 @@
             const triggerThreatAlert = (prediction) => {
                 if (isAlertActive) return;
                 isAlertActive = true;
+
                 const confidencePercent = prediction.probability * 100;
                 const riskPercent = Math.min(100, Math.round(confidencePercent + RISK_BOOST));
+
                 threatTitle.textContent = "!!! THREAT DETECTED !!!";
                 threatRisk.textContent = `Risk Factor: ${riskPercent}%`;
                 threatBanner.classList.remove('hidden');
@@ -167,6 +177,7 @@
                 }
 
                 logAlertToSidebar(prediction, riskPercent);
+
                 setTimeout(() => {
                     threatBanner.classList.add('hidden');
                     threatBanner.classList.remove('blinking-alert');
@@ -174,9 +185,11 @@
                 }, 5000);
             };
 
+            // === Core Logic Flow ===
             const detectLoop = async () => {
                 if (videoElement.readyState >= 3 && model) {
                     const predictions = await model.predict(videoElement);
+                    console.log(predictions.map(p => `${p.className}: ${(p.probability * 100).toFixed(1)}%`).join(' | ')); // For debugging
                     for (const p of predictions) {
                         if (p.className.toLowerCase() === THREAT_CLASS_NAME && p.probability > CONFIDENCE_THRESHOLD) {
                             triggerThreatAlert(p);
@@ -204,15 +217,18 @@
             const startCamera = async () => {
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'environment' } });
+                    // This is the correct, non-buggy order
                     videoElement.onloadeddata = () => initModel();
                     videoElement.srcObject = stream;
                 } catch (err) {
-                    console.error("Error accessing camera: ", err);
+                    console.error("Error accessing camera:", err);
                     updateLoadingMessage("Camera Access Denied.");
                 }
             };
 
-            document.body.addEventListener('click', unlockAudio);
+            // === Startup Listeners ===
+            // This `{ once: true }` option is a cleaner way to ensure the unlock only happens once.
+            document.body.addEventListener('click', unlockAudio, { once: true });
             startCamera();
         });
     </script>

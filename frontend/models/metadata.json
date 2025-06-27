@@ -3,7 +3,7 @@
   "tmVersion": "2.4.10",
   "packageVersion": "0.8.4-alpha2",
   "packageName": "@teachablemachine/image",
-  "timeStamp": "2025-06-26T23:14:01.785Z",
+  "timeStamp": "2025-06-26T23:16:41.079Z",
   "userMetadata": {},
   "modelName": "tm-my-image-model",
   "labels": ["armed", "unarmed"],
