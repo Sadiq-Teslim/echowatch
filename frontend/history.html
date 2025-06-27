@@ -62,7 +62,17 @@
       <h1 class="text-4xl font-bold tracking-tight text-white">Alert History</h1>
       <p class="mt-2 text-lg text-gray-400">A log of all high-priority threats detected by the system.</p>
     </header>
-
+    <!-- Back to Dashboard Button -->
+    <div class="mb-8 text-center">
+      <a href="app.html"
+        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-cyan-600 hover:bg-cyan-700 transition-colors">
+        <svg class="w-5 h-5 mr-3 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Back to Live Dashboard
+      </a>
+    </div>
     <!-- History Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
@@ -70,10 +80,10 @@
       <div class="history-card rounded-lg overflow-hidden">
         <img src="images/history_1.png" alt="Threat detected in Corridor B" class="w-full h-48 object-cover">
         <div class="p-6">
-          <div class="flex justify-between items-start">
+          <div class="flex justify-between items-center">
             <div>
               <p class="text-sm text-red-400 font-bold">CRITICAL THREAT</p>
-              <h3 class="text-xl font-semibold text-white mt-1">Object: ARMED INDIVIDUAL</h3>
+              <h3 class="text-lg font-semibold text-white mt-1">Object: ARMED INDIVIDUAL</h3>
             </div>
             <span class="text-xs bg-red-900/50 text-red-300 px-2 py-1 rounded-full">Risk: 93%</span>
           </div>
@@ -89,10 +99,10 @@
       <div class="history-card rounded-lg overflow-hidden">
         <img src="images/history_2.png" alt="Threat detected near main entrance" class="w-full h-48 object-cover">
         <div class="p-6">
-          <div class="flex justify-between items-start">
+          <div class="flex justify-between items-center">
             <div>
               <p class="text-sm text-red-400 font-bold">CRITICAL THREAT</p>
-              <h3 class="text-xl font-semibold text-white mt-1">Object: ARMED INDIVIDUAL</h3>
+              <h3 class="text-lg font-semibold text-white mt-1">Object: ARMED INDIVIDUAL</h3>
             </div>
             <span class="text-xs bg-red-900/50 text-red-300 px-2 py-1 rounded-full">Risk: 100%</span>
           </div>
@@ -108,10 +118,10 @@
       <div class="history-card rounded-lg overflow-hidden">
         <img src="images/history_3.png" alt="Threat detected in parking garage" class="w-full h-48 object-cover">
         <div class="p-6">
-          <div class="flex justify-between items-start">
+          <div class="flex justify-between items-center">
             <div>
               <p class="text-sm text-red-400 font-bold">CRITICAL THREAT</p>
-              <h3 class="text-xl font-semibold text-white mt-1">Object: ARMED INDIVIDUAL</h3>
+              <h3 class="text-lg font-semibold text-white mt-1">Object: ARMED INDIVIDUAL</h3>
             </div>
             <span class="text-xs bg-red-900/50 text-red-300 px-2 py-1 rounded-full">Risk: 85%</span>
           </div>
@@ -123,18 +133,6 @@
         </div>
       </div>
 
-    </div>
-
-    <!-- Back to Dashboard Button -->
-    <div class="mt-12 text-center">
-      <a href="app.html"
-        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-cyan-600 hover:bg-cyan-700 transition-colors">
-        <svg class="w-5 h-5 mr-3 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-        </svg>
-        Back to Live Dashboard
-      </a>
     </div>
   </main>
 
