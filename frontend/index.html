@@ -5,13 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EchoWatch | Predictive AI Security</title>
-    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="app.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <style>
+        /* This is the key fix for header visibility */
+        .text-strong-shadow {
+            /* This creates a multi-layered, soft dark glow that ensures contrast */
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+        }
+    </style>
 </head>
 
 <body class="gradient-bg text-gray-100 relative">
@@ -38,39 +45,39 @@
                             class="font-light text-cyan-400">Watch</span></span>
                 </a>
                 <a href="app.html"
-                    class="hidden sm:inline-block px-6 py-3 btn-primary text-white font-semibold rounded-lg shadow-lg glow-hover transition-all duration-300 relative z-10">
-                    Live Demo
-                </a>
+                    class="hidden sm:inline-block px-6 py-3 btn-primary text-white font-semibold rounded-lg shadow-lg glow-hover transition-all duration-300 relative z-10">Live
+                    Demo</a>
             </div>
         </div>
     </nav>
 
     <div class="flex flex-col items-center justify-center p-6 md:p-12 relative z-10">
         <header class="text-center max-w-5xl mx-auto mt-20 mb-32">
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight fade-in-up pulse-glow text-gray-100">
+            <!-- Applying the new class here -->
+            <h1
+                class="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight fade-in-up text-gray-100 text-strong-shadow">
                 Echo<span class="text-cyan-400">Watch</span>
             </h1>
             <div class="mt-8 space-y-4">
-                <p class="text-2xl md:text-3xl text-gray-200 font-light fade-in-up fade-in-up-delay-1">
+                <!-- And applying it to the paragraphs as well -->
+                <p
+                    class="text-2xl md:text-3xl text-gray-200 font-light fade-in-up fade-in-up-delay-1 text-strong-shadow">
                     The Future of Safety, <span class="text-cyan-400 font-semibold">Now.</span>
                 </p>
-                <p class="text-xl md:text-2xl text-gray-300 fade-in-up fade-in-up-delay-2">
+                <p class="text-xl md:text-2xl text-gray-300 fade-in-up fade-in-up-delay-2 text-strong-shadow">
                     Giving your security the <span class="text-cyan-400">"spidey sense"</span> it never had - until now.
                 </p>
-                <p class="mt-8 max-w-3xl mx-auto text-lg text-gray-400 leading-relaxed fade-in-up fade-in-up-delay-3">
+                <p
+                    class="mt-8 max-w-3xl mx-auto text-lg text-gray-400 leading-relaxed fade-in-up fade-in-up-delay-3 text-strong-shadow">
                     We use proactive AI to detect threats and unusual behavior <span
                         class="text-cyan-400 text-xl font-semibold">before</span> they escalate. See what's coming, not
                     just what's happened.
                 </p>
             </div>
-
             <div class="mt-12 fade-in-up fade-in-up-delay-4">
-                <a href="app.html" class="inline-block">
-                    <button
-                        class="px-12 py-4 btn-primary text-white font-bold text-lg rounded-xl shadow-2xl glow-hover transition-all duration-300 transform hover:scale-105 relative overflow-hidden">
-                        <span class="relative z-10">Experience the Future</span>
-                    </button>
-                </a>
+                <a href="app.html" class="inline-block"><button
+                        class="px-12 py-4 btn-primary text-white font-bold text-lg rounded-xl shadow-2xl glow-hover transition-all duration-300 transform hover:scale-105 relative overflow-hidden"><span
+                            class="relative z-10">Experience the Future</span></button></a>
             </div>
         </header>
 
@@ -79,9 +86,9 @@
                 <div
                     class="p-8 lg:p-10 bg-gradient-to-br from-gray-800/60 to-gray-900/80 rounded-2xl border border-gray-600/30 card-hover backdrop-blur-sm">
                     <div class="flex items-center justify-center lg:justify-start mb-6">
-                        <div class="relative">
-                            <svg class="h-12 w-12 text-red-400 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <div class="relative"><svg class="h-12 w-12 text-red-400 mr-4"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                             </svg>
@@ -89,14 +96,12 @@
                         </div>
                         <h2
                             class="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-400 to-orange-500 bg-clip-text text-transparent">
-                            The Problem
-                        </h2>
+                            The Problem</h2>
                     </div>
-                    <p class="text-gray-300 text-lg leading-relaxed">
-                        Most security systems <span class="text-cyan-400 text-xl font-semibold">watch</span> but they
-                        don't <span class="text-cyan-400 text-xl font-semibold">warn</span>. By the time an alarm is
-                        raised, the damage is done. They miss early cues: loitering, tension, pacing, possession of arms
-                        and panic.
+                    <p class="text-gray-300 text-lg leading-relaxed">Most security systems <span
+                            class="text-cyan-400 text-xl font-semibold">watch</span> but they don't <span
+                            class="text-cyan-400 text-xl font-semibold">warn</span>. By the time an alarm is raised, the
+                        damage is done. They miss early cues: loitering, tension, pacing, possession of arms and panic.
                     </p>
                     <div class="mt-6 flex space-x-2">
                         <div class="h-2 w-2 bg-red-400 rounded-full animate-pulse"></div>
@@ -104,13 +109,12 @@
                         <div class="h-2 w-2 bg-red-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
                     </div>
                 </div>
-
                 <div
                     class="p-8 lg:p-10 bg-gradient-to-br from-cyan-900/40 to-blue-900/60 rounded-2xl border border-cyan-500/30 card-hover backdrop-blur-sm glow-cyan">
                     <div class="flex items-center justify-center lg:justify-start mb-6">
-                        <div class="relative">
-                            <svg class="h-12 w-12 text-green-400 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <div class="relative"><svg class="h-12 w-12 text-green-400 mr-4"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.6-3.752A11.959 11.959 0 0118 6c0 2.705-1.075 5.226-2.848 7.098L12.5 10.5z" />
                             </svg>
@@ -119,15 +123,12 @@
                         </div>
                         <h2
                             class="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">
-                            Our Solution
-                        </h2>
+                            Our Solution</h2>
                     </div>
-                    <p class="text-gray-200 text-lg leading-relaxed">
-                        EchoWatch is an AI-powered early warning system. It detects subtle threats <span
-                            class="text-cyan-400 font-semibold">before</span> they explode into incidents. We analyze
-                        body language, sound spikes and movement patterns, giving security teams the <span
-                            class="text-cyan-400 font-semibold">edge to act in real time</span>.
-                    </p>
+                    <p class="text-gray-200 text-lg leading-relaxed">EchoWatch is an AI-powered early warning system. It
+                        detects subtle threats <span class="text-cyan-400 font-semibold">before</span> they explode into
+                        incidents. We analyze body language, sound spikes and movement patterns, giving security teams
+                        the <span class="text-cyan-400 font-semibold">edge to act in real time</span>.</p>
                     <div class="mt-6 flex space-x-2">
                         <div class="h-2 w-2 bg-cyan-400 rounded-full animate-pulse"></div>
                         <div class="h-2 w-2 bg-cyan-400 rounded-full animate-pulse" style="animation-delay: 0.15s;">
@@ -139,6 +140,41 @@
                     </div>
                 </div>
             </div>
+
+            <section class="mt-32 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4 text-strong-shadow">How It
+                    Works</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-16 text-strong-shadow">Our system follows a simple
+                    yet powerful three-step process to provide proactive security.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                    <div class="p-8 bg-gray-800/50 rounded-2xl border border-gray-700 card-hover">
+                        <div class="flex items-center mb-4"><span
+                                class="text-cyan-400 text-5xl font-black mr-4">1</span>
+                            <h3 class="text-2xl font-bold text-white">Capture</h3>
+                        </div>
+                        <p class="text-gray-300">EchoWatch seamlessly integrates with any existing camera feed,
+                            capturing high-resolution video and audio data from the environment in real-time.</p>
+                    </div>
+                    <div class="p-8 bg-gray-800/50 rounded-2xl border border-gray-700 card-hover">
+                        <div class="flex items-center mb-4"><span
+                                class="text-cyan-400 text-5xl font-black mr-4">2</span>
+                            <h3 class="text-2xl font-bold text-white">Analyze</h3>
+                        </div>
+                        <p class="text-gray-300">Our proprietary AI model, trained on thousands of hours of data,
+                            analyzes every frame for pre-threat indicators like nervous behavior, concealed objects, and
+                            aggressive tones.</p>
+                    </div>
+                    <div class="p-8 bg-gray-800/50 rounded-2xl border border-gray-700 card-hover">
+                        <div class="flex items-center mb-4"><span
+                                class="text-cyan-400 text-5xl font-black mr-4">3</span>
+                            <h3 class="text-2xl font-bold text-white">Alert</h3>
+                        </div>
+                        <p class="text-gray-300">The moment a potential threat is detected, the system issues an
+                            instant, multi-channel alert to security personnel, providing the context needed to act
+                            decisively.</p>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <footer class="mt-32 text-center space-y-3 text-gray-400">
@@ -150,47 +186,32 @@
     </div>
 
     <script>
-        // Set current year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Create floating particles
-        function createParticles() {
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 20) + 's';
-                particlesContainer.appendChild(particle);
+            if (particlesContainer) {
+                const particleCount = 50;
+                const fragment = document.createDocumentFragment();
+                for (let i = 0; i < particleCount; i++) {
+                    const p = document.createElement('div');
+                    p.className = 'particle';
+                    p.style.left = Math.random() * 100 + '%';
+                    p.style.animationDelay = Math.random() * 20 + 's';
+                    p.style.animationDuration = (Math.random() * 10 + 20) + 's';
+                    fragment.appendChild(p);
+                }
+                particlesContainer.appendChild(fragment);
             }
-        }
-
-        // Update scroll progress indicator
-        function updateScrollProgress() {
             const scrollProgress = document.getElementById('scrollProgress');
-            const scrollTop = document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercentage = (scrollTop / scrollHeight);
-            scrollProgress.style.transform = `scaleX(${scrollPercentage})`;
-        }
-
-        // Initialize
-        window.addEventListener('load', () => {
-            createParticles();
-            window.addEventListener('scroll', updateScrollProgress);
-        });
-
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+            if (scrollProgress) {
+                window.addEventListener('scroll', () => {
+                    const scrollTop = document.documentElement.scrollTop;
+                    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrollPercentage = (scrollTop / scrollHeight);
+                    scrollProgress.style.transform = `scaleX(${scrollPercentage})`;
                 });
-            });
+            }
         });
     </script>
 </body>
